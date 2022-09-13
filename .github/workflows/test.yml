@@ -3,10 +3,20 @@ name: Test
 on: [push]
 
 jobs:
-  echo:
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: 'Echo APP_ENV'
-      - run: |
-          export APP_ENV=test
-          echo $APP_ENV
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build

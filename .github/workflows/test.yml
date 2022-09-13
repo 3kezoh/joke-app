@@ -1,0 +1,12 @@
+name: Test
+
+on: [push]
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Echo APP_ENV'
+      - run: |
+          export APP_ENV=test
+          echo $APP_ENV
